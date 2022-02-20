@@ -1,30 +1,32 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
-import { ErrorLink, onError } from '@apollo/client/link/error'
+// import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
+// import { ErrorLink, onError } from '@apollo/client/link/error'
 
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({message, location, path}) => {
-      alert(`GraphQL error ${message}`)
-    })
-  }
-})
+// const errorLink = onError(({ graphqlErrors, networkError }) => {
+//   if (graphqlErrors) {
+//     graphqlErrors.map(({message, location, path}) => {
+//       alert(`GraphQL error ${message}`)
+//     })
+//   }
+// })
 
-const link = from([
-  errorLink,
-  new HttpLink({uri: 'http//localhost:4000'}),
-])
+// const link = from([
+//   errorLink,
+//   new HttpLink({uri: 'http//localhost:4000'}),
+// ])
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: link
-})
+// const client = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   link: link
+// })
 
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    // router will be at the topd
+    // <ApolloProvider client={client}>
+      /* can add a component where we'll gave all of the stuff */
       <div>React app</div>
-    </ApolloProvider>
+    /* </ApolloProvider> */
   );
 }
 
