@@ -3,30 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client'
-import { ErrorLink, onError } from '@apollo/client/link/error'
-
-const errorLink = onError(({ graphqlErrors, networkError }) => {
-  if (graphqlErrors) {
-    graphqlErrors.map(({message, location, path}) => {
-      alert(`GraphQL error ${message}`)
-    })
-  }
-})
-
-const link = from([
-  errorLink,
-  new HttpLink({uri: 'http//localhost:4000'}),
-])
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from, gql } from '@apollo/client'
 
 const client = new ApolloClient({
+  uri: 'http//localhost:4000',
   cache: new InMemoryCache(),
-  link: link
 })
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <App client={client}/>
   </ApolloProvider>
 , document.getElementById('root'));
 
